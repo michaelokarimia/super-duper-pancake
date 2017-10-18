@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Algorithms
 {
@@ -14,15 +15,55 @@ namespace Algorithms
         {
             _employees = getSortedListOfSalaries();
 
-            var employee = getUserBySalary(500);
+            var salaryTarget = 350;
 
-            Console.WriteLine("Name: {0} , salary {1}", employee.user, employee.salary);
+            var employeeList = getUserBySalaryUsingDictionary(salaryTarget);
+
+            Console.WriteLine("Employees with salary of {0}", salaryTarget);
+            foreach (var employee in employeeList)
+            {
+                Console.WriteLine("Name: {0} , salary {1}", employee.user, employee.salary);
+            }
+
+        }
+
+        private static List<Employee> getUserBySalaryUsingDictionary(int target)
+        {
+            List<Employee> matchingEmployeesList = new List<Employee>();
+
+            // scan array once and add it to a dictionary O(n)
+
+            var dict = new Dictionary<int, List<Employee>>();
+
+            foreach(Employee emp in _employees)
+            {
+                if (dict.ContainsKey(emp.salary))
+                {
+                    //already an employee stored, so append the new one 
+                    dict[emp.salary].Add(emp);
+                }
+                else
+                {
+                    //no employee with the salary so just add it as new
+                    dict[emp.salary] = new List<Employee> { emp };
+                }
+            }
+
+
+            // then lookup be salary key o(1) after wards
+
+            if (dict.ContainsKey(target))
+            { matchingEmployeesList = dict[target]; }
+
+            return matchingEmployeesList;
 
         }
 
         //use binary search tree to divide and conquer a sorted list
-        private static Employee getUserBySalary(int target)
+        private static Employee getUserBySalaryBinarySearch(int target)
         {
+            //time complexity O log (n)
+
             Employee result = null;
 
             var max = _employees.Length - 1;
