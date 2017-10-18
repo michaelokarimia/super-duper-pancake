@@ -10,11 +10,44 @@ namespace Algorithms
 
         internal static void Run()
         {
-            BinaryTree root = buildPayTree();
+            BinaryTree ceo = buildPayTree();
 
+            Console.WriteLine("PreOrderTraversal");
+            preOrderTraversalSalaryReport(ceo);
+            Console.WriteLine("InOrderTraversal");
+            inOrderTraversalSalaryReport(ceo);
+            Console.WriteLine("PostOrderTraversal");
+            postOrderTraversalSalaryReport(ceo);
+        }
 
-            printLeftRightSalaries(root);
+        private static void postOrderTraversalSalaryReport(BinaryTree node)
+        {
+            if(node!=null)
+            {
+                postOrderTraversalSalaryReport(node.LeftTree);
+                postOrderTraversalSalaryReport(node.RightTree);
+                Console.WriteLine(node.Value);
+            }
+        }
 
+        private static void inOrderTraversalSalaryReport(BinaryTree node)
+        {
+            if(node != null)
+            {
+                inOrderTraversalSalaryReport(node.LeftTree);
+                Console.WriteLine(node.Value);
+                inOrderTraversalSalaryReport(node.RightTree);
+            }
+        }
+
+        private static void preOrderTraversalSalaryReport(BinaryTree node)
+        {
+            if(node != null)
+            {
+                Console.WriteLine(node.Value);
+                preOrderTraversalSalaryReport(node.LeftTree);
+                preOrderTraversalSalaryReport(node.RightTree);
+            }
         }
 
         private static void printLeftRightSalaries(BinaryTree root)
