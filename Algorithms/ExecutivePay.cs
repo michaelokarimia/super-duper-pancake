@@ -13,6 +13,14 @@ namespace Algorithms
         {
             BinaryTree ceo = buildPayTree();
 
+            Console.WriteLine("PreOrderTraversal");
+            preOrderTraversalSalaryReport(ceo);
+            Console.WriteLine("InOrderTraversal");
+            inOrderTraversalSalaryReport(ceo);
+            Console.WriteLine("PostOrderTraversal");
+            postOrderTraversalSalaryReport(ceo);
+
+            Console.WriteLine("StackImplemention");
             stackSalaryReportImplementation(ceo);
         
         }
