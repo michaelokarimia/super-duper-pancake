@@ -34,15 +34,21 @@ namespace Algorithms
             var tree = BuildTree(_employees, 0, _employees.Length -1);
 
             Console.WriteLine(tree);
+
+            Console.WriteLine("Traverse Balanced Binary tree using depth first in order method");
+
+            ExecutivePay.inOrderTraversal(tree);
         }
 
         private static BinaryTree BuildTree(Employee[] list, int min, int max)
         {
-            //root node needs to be in the middle of the array. So like a binary search tree in reverse
+            //root node needs to be in the middle of the array. 
             //get the middle item of our array, make that the root, then split the array into smaller chunks
 
+            //there are no more elements to split so set the node to null
             if (max < min)
                 return null;
+            
 
             var middle = (max + min) / 2;
 

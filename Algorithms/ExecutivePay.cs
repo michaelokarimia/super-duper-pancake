@@ -16,7 +16,7 @@ namespace Algorithms
             Console.WriteLine("PreOrderTraversal");
             preOrderTraversalSalaryReport(ceo);
             Console.WriteLine("InOrderTraversal");
-            inOrderTraversalSalaryReport(ceo);
+            inOrderTraversal(ceo);
             Console.WriteLine("PostOrderTraversal");
             postOrderTraversalSalaryReport(ceo);
 
@@ -58,13 +58,13 @@ namespace Algorithms
             }
         }
 
-        private static void inOrderTraversalSalaryReport(BinaryTree node)
+        public static void inOrderTraversal(BinaryTree node)
         {
             if(node != null)
             {
-                inOrderTraversalSalaryReport(node.Left);
+                inOrderTraversal(node.Left);
                 Console.WriteLine(node.Value);
-                inOrderTraversalSalaryReport(node.Right);
+                inOrderTraversal(node.Right);
             }
         }
 
