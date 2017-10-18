@@ -1,4 +1,5 @@
-﻿using Algorithms.data_structures.data_structures;
+﻿using Algorithms.data_structures;
+using Algorithms.data_structures.data_structures;
 using System;
 
 namespace Algorithms
@@ -12,12 +13,31 @@ namespace Algorithms
         {
             BinaryTree ceo = buildPayTree();
 
-            Console.WriteLine("PreOrderTraversal");
-            preOrderTraversalSalaryReport(ceo);
-            Console.WriteLine("InOrderTraversal");
-            inOrderTraversalSalaryReport(ceo);
-            Console.WriteLine("PostOrderTraversal");
-            postOrderTraversalSalaryReport(ceo);
+            stackSalaryReportImplementation(ceo);
+        
+        }
+
+        private static void stackSalaryReportImplementation(BinaryTree node)
+        {
+            var stack = new Stack();
+
+            stack.Push(node);
+
+            while(stack.Count > 0)
+            {
+                BinaryTree currentNode = (BinaryTree)stack.Pop();
+                Console.WriteLine(currentNode.Value);
+                if(currentNode.RightTree != null)
+                {
+                    stack.Push(currentNode.RightTree);
+                }
+                if(currentNode.LeftTree != null)
+                {
+                    stack.Push(currentNode.LeftTree);
+                }
+            }
+
+
         }
 
         private static void postOrderTraversalSalaryReport(BinaryTree node)
