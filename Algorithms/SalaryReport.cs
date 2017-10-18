@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Algorithms.data_structures.data_structures;
+using System;
 using System.Collections.Generic;
 
 namespace Algorithms
@@ -8,12 +9,11 @@ namespace Algorithms
         //given a sorted list of employees with names and salaries, find the name of an employee with a given salary
         //Make the search a efficient as possible
     
-        
         static Employee[] _employees;
 
         internal static void Run()
         {
-            _employees = getSortedListOfSalaries();
+            _employees = getSortedListOfEmployeesByTheirSalaries();
 
             var salaryTarget = 350;
 
@@ -26,6 +26,38 @@ namespace Algorithms
             }
 
         }
+
+        internal static void BuildBalancedBinarySearchTree()
+        {
+            _employees = getSortedListOfEmployeesByTheirSalaries();
+
+            var tree = BuildTree(_employees, 0, _employees.Length -1);
+
+            Console.WriteLine(tree);
+        }
+
+        private static BinaryTree BuildTree(Employee[] list, int min, int max)
+        {
+            //root node needs to be in the middle of the array. So like a binary search tree in reverse
+            //get the middle item of our array, make that the root, then split the array into smaller chunks
+
+            if (max < min)
+                return null;
+
+            var middle = (max + min) / 2;
+
+            var node = new BinaryTree(list[middle].salary);
+
+            //set the left tree and it's children to store the first half of the array 
+
+            node.Left = BuildTree(list, min, middle - 1);
+
+            //set the right tree and it's children to contain all the array elements from mid point of array till the end
+
+            node.Right = BuildTree(list, middle + 1, max);
+
+            return node;
+        }            
 
         private static List<Employee> getUserBySalaryUsingDictionary(int target)
         {
@@ -98,7 +130,7 @@ namespace Algorithms
             return result;
         }
 
-        private static Employee[] getSortedListOfSalaries()
+        private static Employee[] getSortedListOfEmployeesByTheirSalaries()
         {
             return new Employee[]
             {

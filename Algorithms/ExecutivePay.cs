@@ -35,13 +35,13 @@ namespace Algorithms
             {
                 BinaryTree currentNode = (BinaryTree)stack.Pop();
                 Console.WriteLine(currentNode.Value);
-                if(currentNode.RightTree != null)
+                if(currentNode.Right != null)
                 {
-                    stack.Push(currentNode.RightTree);
+                    stack.Push(currentNode.Right);
                 }
-                if(currentNode.LeftTree != null)
+                if(currentNode.Left != null)
                 {
-                    stack.Push(currentNode.LeftTree);
+                    stack.Push(currentNode.Left);
                 }
             }
 
@@ -52,8 +52,8 @@ namespace Algorithms
         {
             if(node!=null)
             {
-                postOrderTraversalSalaryReport(node.LeftTree);
-                postOrderTraversalSalaryReport(node.RightTree);
+                postOrderTraversalSalaryReport(node.Left);
+                postOrderTraversalSalaryReport(node.Right);
                 Console.WriteLine(node.Value);
             }
         }
@@ -62,9 +62,9 @@ namespace Algorithms
         {
             if(node != null)
             {
-                inOrderTraversalSalaryReport(node.LeftTree);
+                inOrderTraversalSalaryReport(node.Left);
                 Console.WriteLine(node.Value);
-                inOrderTraversalSalaryReport(node.RightTree);
+                inOrderTraversalSalaryReport(node.Right);
             }
         }
 
@@ -73,8 +73,8 @@ namespace Algorithms
             if(node != null)
             {
                 Console.WriteLine(node.Value);
-                preOrderTraversalSalaryReport(node.LeftTree);
-                preOrderTraversalSalaryReport(node.RightTree);
+                preOrderTraversalSalaryReport(node.Left);
+                preOrderTraversalSalaryReport(node.Right);
             }
         }
 
@@ -88,16 +88,16 @@ namespace Algorithms
 
         private static void calcRightVsLeftSalaries(BinaryTree node)
         {
-            if(node.LeftTree != null)
+            if(node.Left != null)
             {
-                leftSum += node.LeftTree.Value;
-                calcRightVsLeftSalaries(node.LeftTree);
+                leftSum += node.Left.Value;
+                calcRightVsLeftSalaries(node.Left);
             }
 
-            if (node.RightTree != null)
+            if (node.Right != null)
             {
-                rightSum += node.RightTree.Value;
-                calcRightVsLeftSalaries(node.RightTree);
+                rightSum += node.Right.Value;
+                calcRightVsLeftSalaries(node.Right);
             }
         }
 
@@ -106,8 +106,8 @@ namespace Algorithms
             if(node !=null)
             {
                 Console.WriteLine(node);
-                depthFirstSearch(node.LeftTree);
-                depthFirstSearch(node.RightTree);
+                depthFirstSearch(node.Left);
+                depthFirstSearch(node.Right);
 
             }
         }

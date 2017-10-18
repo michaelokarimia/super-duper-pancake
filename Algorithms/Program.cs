@@ -6,8 +6,7 @@ namespace Algorithms
     {
         static void Main(string[] args)
         {
-            SalaryReport.Run();
-            
+            SalaryReport.BuildBalancedBinarySearchTree();
 
             Console.ReadKey();
         }
