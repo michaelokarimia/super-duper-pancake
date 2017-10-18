@@ -12,6 +12,13 @@ namespace Algorithms
         {
             BinaryTree root = buildPayTree();
 
+
+            printLeftRightSalaries(root);
+
+        }
+
+        private static void printLeftRightSalaries(BinaryTree root)
+        {
             leftSum = 0;
             rightSum = 0;
             calcRightVsLeftSalaries(root);
