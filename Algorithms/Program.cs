@@ -6,7 +6,7 @@ namespace Algorithms
     {
         static void Main(string[] args)
         {
-            ExecutivePay.Run();
+            SalaryReport.Run();
             
 
             Console.ReadKey();
