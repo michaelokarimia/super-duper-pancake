@@ -7,11 +7,8 @@ namespace Algorithms
     {
         static void Main(string[] args)
         {
-            //BinarySearchTree bst = BSTBuilder.Build();
-            //ExecutivePay.Run();
-            //Console.WriteLine(bst);
 
-            SalaryReport.Run();
+            SalaryReport.RunBinarySearch();
 
             Console.ReadKey();
         }
