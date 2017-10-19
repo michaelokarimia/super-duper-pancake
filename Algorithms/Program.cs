@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Algorithms.data_structures;
+using System;
 
 namespace Algorithms
 {
@@ -6,7 +7,11 @@ namespace Algorithms
     {
         static void Main(string[] args)
         {
-            SalaryReport.BuildBalancedBinarySearchTree();
+            //BinarySearchTree bst = BSTBuilder.Build();
+            //ExecutivePay.Run();
+            //Console.WriteLine(bst);
+
+            SalaryReport.Run();
 
             Console.ReadKey();
         }

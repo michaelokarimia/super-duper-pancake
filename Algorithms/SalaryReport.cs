@@ -1,10 +1,11 @@
-﻿using Algorithms.data_structures.data_structures;
+﻿using Algorithms.data_structures;
+using Algorithms.data_structures.data_structures;
 using System;
 using System.Collections.Generic;
 
 namespace Algorithms
 {
-    internal class SalaryReport
+    internal partial class SalaryReport
     {
         //given a sorted list of employees with names and salaries, find the name of an employee with a given salary
         //Make the search a efficient as possible
@@ -102,7 +103,7 @@ namespace Algorithms
         {
             //time complexity O log (n)
 
-            Employee result = null;
+            Employee result = new Employee();
 
             var max = _employees.Length - 1;
             var min = 0;
@@ -140,21 +141,21 @@ namespace Algorithms
         {
             return new Employee[]
             {
-                new Employee(){ user = "danz0", salary = 210},
-                new Employee(){ user = "sampus", salary = 220},
-                new Employee(){ user = "samllamam", salary = 220},
-                new Employee(){ user = "akeela", salary = 230},
-                new Employee(){ user = "dwonx", salary = 240},
-                new Employee(){ user = "twixl", salary = 250},
-                new Employee(){ user = "flerp", salary = 260},
-                new Employee(){ user = "twitchx", salary = 280},
-                new Employee(){ user = "dkkkskd2k", salary = 350},
-                new Employee(){ user = "plenth", salary = 380},
-                new Employee(){ user = "j0newa", salary = 400},
-                new Employee(){ user = "kliffff", salary = 450},
-                new Employee(){ user = "perplz", salary = 500},
-                new Employee(){ user = "x", salary = 520},
-                new Employee(){ user = "zed", salary = 1000},
+                new Employee("danz0", 210),
+                new Employee("sampus", 220),
+                new Employee("samllamam", 220),
+                new Employee("akeela", 230),
+                new Employee("dwonx", 240),
+                new Employee("twixl", 250),
+                new Employee("flerp", 260),
+                new Employee("twitchx", 280),
+                new Employee("dkkkskd2k", 350),
+                new Employee("plenth", 380),
+                new Employee("j0newa", 400),
+                new Employee("kliffff", 450),
+                new Employee("perplz", 500),
+                new Employee("x", 520),
+                new Employee("zed", 1000)
             };
         }
     }

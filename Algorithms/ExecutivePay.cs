@@ -90,13 +90,13 @@ namespace Algorithms
         {
             if(node.Left != null)
             {
-                leftSum += node.Left.Value;
+                leftSum += (int)node.Left.Value;
                 calcRightVsLeftSalaries(node.Left);
             }
 
             if (node.Right != null)
             {
-                rightSum += node.Right.Value;
+                rightSum += (int)node.Right.Value;
                 calcRightVsLeftSalaries(node.Right);
             }
         }
@@ -119,13 +119,13 @@ namespace Algorithms
             var pres = ceo.AddLeft(500);
             var coo = ceo.AddRight(500);
 
-            var vpOfToys = pres.AddRight(450);
-            vpOfToys.AddLeft(250);
-            vpOfToys.AddRight(280);
-
             var vpOfLuck = pres.AddLeft(400);
             vpOfLuck.AddLeft(220);
             vpOfLuck.AddRight(260);
+
+            var vpOfToys = pres.AddRight(450);
+            vpOfToys.AddLeft(250);
+            vpOfToys.AddRight(280);
 
             var vpOfMeetings = coo.AddLeft(380);
             vpOfMeetings.AddLeft(210);
