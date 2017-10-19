@@ -9,21 +9,20 @@ namespace Algorithms
     {
         //given a sorted list of employees with names and salaries, find the name of an employee with a given salary
         //Make the search a efficient as possible
+        //Want to return ALL matching employee names, not just the first
     
-        static Employee[] _employees;
-
         internal static void RunDictionarySearch()
         {
             var employeesList = getSortedListOfEmployeesByTheirSalaries();
 
-            var salaryTarget = 350;
+            var salaryTarget = 500;
 
-            var matchingEmployeeList = getUserBySalaryUsingDictionary(salaryTarget);
+            var matchingEmployeeList = getUserBySalaryUsingDictionary(employeesList, salaryTarget);
 
             Console.WriteLine("Employees with salary of {0}", salaryTarget);
             foreach (var employee in matchingEmployeeList)
             {
-                Console.WriteLine("Name: {0} , salary {1}", employee.user, employee.salary);
+                Console.WriteLine("Name: {0}, salary {1}", employee, salaryTarget);
             }
         }
 
@@ -50,9 +49,9 @@ namespace Algorithms
 
         internal static void BuildBalancedBinarySearchTree()
         {
-            _employees = getSortedListOfEmployeesByTheirSalaries();
+            var employees = getSortedListOfEmployeesByTheirSalaries();
 
-            var tree = BuildTree(_employees, 0, _employees.Length -1);
+            var tree = BuildTree(employees, 0, employees.Length -1);
 
             Console.WriteLine(tree);
 
@@ -86,33 +85,33 @@ namespace Algorithms
             return node;
         }
 
-        private static List<Employee> getUserBySalaryUsingDictionary(int target)
+        private static List<string> getUserBySalaryUsingDictionary(Employee[] employeesList, int salaryTarget)
         {
-            List<Employee> matchingEmployeesList = new List<Employee>();
+            List<string> matchingEmployeesList = new List<string>();
 
             // scan array once and add it to a dictionary O(n)
 
-            var dict = new Dictionary<int, List<Employee>>();
+            var allEmployeesDictionary = new Dictionary<int, List<string>>();
 
-            foreach(Employee emp in _employees)
+            foreach(Employee emp in employeesList)
             {
-                if (dict.ContainsKey(emp.salary))
+                if (allEmployeesDictionary.ContainsKey(emp.salary))
                 {
-                    //already an employee stored, so append the new one 
-                    dict[emp.salary].Add(emp);
+                    //already an employee stored, so append name to the list of names
+                    allEmployeesDictionary[emp.salary].Add(emp.user);              
                 }
                 else
                 {
                     //no employee with the salary so just add it as new
-                    dict[emp.salary] = new List<Employee> { emp };
+                    allEmployeesDictionary.Add(emp.salary, new List<string> { emp.user });
                 }
             }
 
 
             // then lookup be salary key o(1) after wards
 
-            if (dict.ContainsKey(target))
-            { matchingEmployeesList = dict[target]; }
+            if (allEmployeesDictionary.ContainsKey(salaryTarget))
+            { matchingEmployeesList = allEmployeesDictionary[salaryTarget]; }
 
             return matchingEmployeesList;
 
@@ -178,7 +177,7 @@ namespace Algorithms
                 new Employee("j0newa", 400),//10
                 new Employee("kliffff", 450),//11
                 new Employee("perplz", 500),//12
-                new Employee("x", 520),//13
+                new Employee("x", 500),//13
                 new Employee("zed", 1000)//14
             };
         }

@@ -7,9 +7,7 @@ namespace Algorithms
     {
         static void Main(string[] args)
         {
-
-            SalaryReport.RunBinarySearch();
-
+            SalaryReport.RunDictionarySearch();
             Console.ReadKey();
         }
     }
