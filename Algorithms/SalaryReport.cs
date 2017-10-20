@@ -46,8 +46,7 @@ namespace Algorithms
             }
         }
 
-
-        internal static void BuildBalancedBinarySearchTree()
+        internal static void BuildBinarySearchTree()
         {
             var employees = getSortedListOfEmployeesByTheirSalaries();
 
@@ -60,6 +59,7 @@ namespace Algorithms
             ExecutivePay.inOrderTraversal(tree);
         }
 
+        //given a sorted list, create a binary tree of it
         private static BinaryTree BuildTree(Employee[] list, int min, int max)
         {
             //root node needs to be in the middle of the array. 
