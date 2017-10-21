@@ -1,13 +1,15 @@
 ﻿using Algorithms.data_structures;
 using Algorithms.data_structures.data_structures;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Algorithms
 {
     internal class ExecutivePay
     {
-        static int leftSum = 0;
-        static int rightSum = 0;
+        static int _leftSum = 0;
+        static int _rightSum = 0;
 
         internal static void Run()
         {
@@ -25,7 +27,67 @@ namespace Algorithms
 
             Console.WriteLine("Breadth First Traversal");
             queueBreadthFirstSearchTraversal(ceo);
-        
+
+
+            CheckForSymmetricCorporateStructure();
+
+
+
+        }
+
+        private static void CheckForSymmetricCorporateStructure()
+        {
+            var newCorporateStructure = BuildRevisedCorporateStructure();
+
+            Console.WriteLine("Is Binary Tree Symmetrical? {0}", isBinarySearchTreeIsSymetrical(newCorporateStructure) ? "Yes" : "No");
+        }
+
+        private static bool isBinarySearchTreeIsSymetrical(BinaryTree ceo)
+        {
+            Queue q = new Queue();
+
+            //start with first two nodes
+            q.Enqueue(ceo.Left);
+            q.Enqueue(ceo.Right);
+
+            while (q.count > 0)
+            {
+                var left = (BinaryTree)q.Dequeue();
+                var right = (BinaryTree)q.Dequeue();
+
+                if (left.Value != right.Value)
+                {
+                    return false;
+                }
+
+                //add the outside nodes to the queue one after each other in order to compare them next
+
+                if (left.Left != null)
+                {
+                    q.Enqueue(left.Left);
+                }
+
+                if (right.Right != null)
+                {
+                    q.Enqueue(right.Right);
+                }
+
+                //then enqueue the inner two nodes for comparison
+
+                if (left.Right != null)
+                {
+                    q.Enqueue(left.Right);
+                }
+
+                if (right.Left != null)
+                {
+                    q.Enqueue(right.Left);
+                }
+
+
+            }
+
+            return true;
         }
 
         private static void queueBreadthFirstSearchTraversal(BinaryTree ceo)
@@ -34,9 +96,9 @@ namespace Algorithms
 
             q.Enqueue(ceo);
 
-            while(q.count > 0)
+            while (q.count > 0)
             {
-                BinaryTree currentNode = (BinaryTree) q.Dequeue();
+                BinaryTree currentNode = (BinaryTree)q.Dequeue();
                 Console.WriteLine(currentNode.Value);
 
                 if (currentNode.Left != null)
@@ -58,15 +120,15 @@ namespace Algorithms
 
             stack.Push(node);
 
-            while(stack.Count > 0)
+            while (stack.Count > 0)
             {
                 BinaryTree currentNode = (BinaryTree)stack.Pop();
                 Console.WriteLine(currentNode.Value);
-                if(currentNode.Right != null)
+                if (currentNode.Right != null)
                 {
                     stack.Push(currentNode.Right);
                 }
-                if(currentNode.Left != null)
+                if (currentNode.Left != null)
                 {
                     stack.Push(currentNode.Left);
                 }
@@ -77,7 +139,7 @@ namespace Algorithms
 
         private static void postOrderTraversalSalaryReport(BinaryTree node)
         {
-            if(node!=null)
+            if (node != null)
             {
                 postOrderTraversalSalaryReport(node.Left);
                 postOrderTraversalSalaryReport(node.Right);
@@ -86,8 +148,8 @@ namespace Algorithms
         }
 
         public static void inOrderTraversal(BinaryTree node)
-         {
-            if(node != null)
+        {
+            if (node != null)
             {
                 inOrderTraversal(node.Left);
                 Console.WriteLine(node.Value);
@@ -97,7 +159,7 @@ namespace Algorithms
 
         private static void preOrderTraversalSalaryReport(BinaryTree node)
         {
-            if(node != null)
+            if (node != null)
             {
                 Console.WriteLine(node.Value);
                 preOrderTraversalSalaryReport(node.Left);
@@ -107,30 +169,30 @@ namespace Algorithms
 
         private static void printLeftRightSalaries(BinaryTree root)
         {
-            leftSum = 0;
-            rightSum = 0;
+            _leftSum = 0;
+            _rightSum = 0;
             calcRightVsLeftSalaries(root);
-            Console.WriteLine("LeftSum: {0}, RightSum: {1}", leftSum, rightSum);
+            Console.WriteLine("LeftSum: {0}, RightSum: {1}", _leftSum, _rightSum);
         }
 
         private static void calcRightVsLeftSalaries(BinaryTree node)
         {
-            if(node.Left != null)
+            if (node.Left != null)
             {
-                leftSum += (int)node.Left.Value;
+                _leftSum += (int)node.Left.Value;
                 calcRightVsLeftSalaries(node.Left);
             }
 
             if (node.Right != null)
             {
-                rightSum += (int)node.Right.Value;
+                _rightSum += (int)node.Right.Value;
                 calcRightVsLeftSalaries(node.Right);
             }
         }
 
         private static void depthFirstSearch(BinaryTree node)
         {
-            if(node !=null)
+            if (node != null)
             {
                 Console.WriteLine(node);
                 depthFirstSearch(node.Left);
@@ -164,5 +226,32 @@ namespace Algorithms
 
             return ceo;
         }
+
+        private static BinaryTree BuildRevisedCorporateStructure()
+        {
+            var ceo = new BinaryTree(1000);
+
+            var pres = ceo.AddLeft(500);
+            var coo = ceo.AddRight(500);
+
+            var vpOfLuck = pres.AddLeft(350);
+            vpOfLuck.AddLeft(250);
+            vpOfLuck.AddRight(220);
+
+            var vpOfToys = pres.AddRight(400);
+            vpOfToys.AddLeft(220);
+            vpOfToys.AddRight(220);
+
+            var vpOfMeetings = coo.AddLeft(400);
+            vpOfMeetings.AddLeft(220);
+            vpOfMeetings.AddRight(220);
+
+            var vpOfVPs = coo.AddRight(350);
+            vpOfVPs.AddLeft(220);
+            vpOfVPs.AddRight(250);
+
+            return ceo;
+        }
+
     }
 }

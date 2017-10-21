@@ -42,7 +42,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BSTBuilder.cs" />
     <Compile Include="data_structures\BinarySearchTree.cs" />
     <Compile Include="data_structures\BinaryTree.cs" />
     <Compile Include="data_structures\LinkedList.cs" />
