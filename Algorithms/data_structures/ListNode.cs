@@ -8,7 +8,7 @@
             this.Next = null;
         }
 
-        public ListNode(int value, ListNode next)
+        public ListNode(object value, ListNode next)
         {
             this.Value = value;
             Next = next;

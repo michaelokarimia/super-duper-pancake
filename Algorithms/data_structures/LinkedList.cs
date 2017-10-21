@@ -24,7 +24,7 @@ namespace Algorithms.data_structures
             return last;
         }
 
-        public ListNode Append(int value)
+        public ListNode Append(object value)
         {
             var insertNode = new ListNode(value);
 

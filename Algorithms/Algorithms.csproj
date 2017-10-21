@@ -47,6 +47,7 @@
     <Compile Include="data_structures\BinaryTree.cs" />
     <Compile Include="data_structures\LinkedList.cs" />
     <Compile Include="data_structures\ListNode.cs" />
+    <Compile Include="data_structures\Queue.cs" />
     <Compile Include="data_structures\Stack.cs" />
     <Compile Include="data_structures\Employee.cs" />
     <Compile Include="ExecutivePay.cs" />

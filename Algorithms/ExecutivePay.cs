@@ -22,7 +22,34 @@ namespace Algorithms
 
             Console.WriteLine("StackImplemention");
             stackSalaryReportImplementation(ceo);
+
+            Console.WriteLine("Breadth First Traversal");
+            queueBreadthFirstSearchTraversal(ceo);
         
+        }
+
+        private static void queueBreadthFirstSearchTraversal(BinaryTree ceo)
+        {
+            var q = new Queue();
+
+            q.Enqueue(ceo);
+
+            while(q.count > 0)
+            {
+                BinaryTree currentNode = (BinaryTree) q.Dequeue();
+                Console.WriteLine(currentNode.Value);
+
+                if (currentNode.Left != null)
+                {
+                    q.Enqueue(currentNode.Left);
+                }
+
+                if (currentNode.Right != null)
+                {
+                    q.Enqueue(currentNode.Right);
+                }
+            }
+
         }
 
         private static void stackSalaryReportImplementation(BinaryTree node)
@@ -59,7 +86,7 @@ namespace Algorithms
         }
 
         public static void inOrderTraversal(BinaryTree node)
-        {
+         {
             if(node != null)
             {
                 inOrderTraversal(node.Left);

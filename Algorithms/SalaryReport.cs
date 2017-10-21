@@ -46,21 +46,9 @@ namespace Algorithms
             }
         }
 
-        internal static void BuildBinarySearchTree()
-        {
-            var employees = getSortedListOfEmployeesByTheirSalaries();
-
-            var tree = BuildTree(employees, 0, employees.Length -1);
-
-            Console.WriteLine(tree);
-
-            Console.WriteLine("Traverse Balanced Binary tree using depth first in order method");
-
-            ExecutivePay.inOrderTraversal(tree);
-        }
 
         //given a sorted list, create a binary tree of it
-        private static BinaryTree BuildTree(Employee[] list, int min, int max)
+        private static BinaryTree BuildTreeOfEmployees(Employee[] list, int min, int max)
         {
             //root node needs to be in the middle of the array. 
             //get the middle item of our array, make that the root, then split the array into smaller chunks
@@ -76,11 +64,11 @@ namespace Algorithms
 
             //set the left tree and it's children to store the first half of the array 
 
-            node.Left = BuildTree(list, min, middle - 1);
+            node.Left = BuildTreeOfEmployees(list, min, middle - 1);
 
             //set the right tree and it's children to contain all the array elements from mid point of array till the end
 
-            node.Right = BuildTree(list, middle + 1, max);
+            node.Right = BuildTreeOfEmployees(list, middle + 1, max);
 
             return node;
         }

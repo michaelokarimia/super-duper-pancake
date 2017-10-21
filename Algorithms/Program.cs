@@ -7,7 +7,7 @@ namespace Algorithms
     {
         static void Main(string[] args)
         {
-            SalaryReport.BuildBinarySearchTree();
+            ExecutivePay.Run();
             Console.ReadKey();
         }
     }
